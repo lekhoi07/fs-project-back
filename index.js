@@ -24,9 +24,9 @@ app.get("/", async (req, res) => {
 });
 
 // Get all students
-app.get("/students", async (req, res) => {
-	console.log("getting all students")
-	const collectionRef = collection(db, "Students");
+app.get("/tasks", async (req, res) => {
+	console.log("getting all tasks")
+	const collectionRef = collection(db, "tasks");
 	const collectionSnap = await getDocs(collectionRef)
 	const docs = []
 	collectionSnap.forEach((doc) => {
@@ -36,8 +36,8 @@ app.get("/students", async (req, res) => {
 })
 
 // Add a new student
-app.post("/students", async (req, res) => {
-	const studentRef = collection(db, "Students");
+app.post("/tasks", async (req, res) => {
+	const studentRef = collection(db, "tasks");
 	const studentBody = req.body
 	try {
 		await addDoc(studentRef, studentBody)
@@ -45,7 +45,7 @@ app.post("/students", async (req, res) => {
 		console.error(e)
 		res.status(500);
 	}
-	res.status(200).send("Succesfully Created Student")
+	res.status(200).send("Succesfully Created Task")
 })
 
 function start() {
